@@ -1,11 +1,23 @@
-class AddressBook {
-   
+class AddressBook{
+
+
+    constructor(firstName, lastName, address, city, state, zip, phoneNumber, email){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
     get firstName() { return this._firstName;}
     set firstName(firstName) {
         let firstNameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
         if(firstNameRegex.test(firstName))
             this._firstName = firstName;
-        else throw 'First Name Should contain one upper case and min 3 characters';    
+        else throw 'First Name Should contain one upper case and min 3 chars';    
     }
 
     get lastName() { return this._lastName;}
@@ -13,15 +25,15 @@ class AddressBook {
         let lastNAmeRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
         if(lastNAmeRegex.test(lastName))
             this._lastName = lastName;
-        else throw 'Last Name Should contain one upper case and min 3 characters';    
+        else throw 'Last Name Should contain one upper case and min 3 chars';    
     }
 
     get address() { return this._address;}
     set address(address) {
-        let addressRegex = RegExp('^[A-Za-z\\s\\-]{4,}$');
+        let addressRegex = RegExp('^[A-Za-z]{4,}$');
         if(addressRegex.test(address))
             this._address = address;
-        else throw 'Address Should contain at least 4 characters';    
+        else throw 'Address Should contain at least 4 chars';    
     }
 
     get city() { return this._city;}
@@ -29,7 +41,7 @@ class AddressBook {
         let cityRegex = RegExp('^[A-Za-z]{4,}$');
         if(cityRegex.test(city))
             this._city = city;
-        else throw 'City Name Should contain at least 4 characters';    
+        else throw 'City Name Should contain at least 4 chars';    
     }
 
     get state() { return this._state;}
@@ -37,14 +49,14 @@ class AddressBook {
         let stateRegex = RegExp('^[A-Za-z]{4,}$');
         if(stateRegex.test(state))
             this._state = state;
-        else throw 'State Name Should contain at least 4 characters';  
+        else throw 'State Name Should contain at least 4 chars';  
     }
 
-    get zipCode() { return this._zipCode;}
-    set zipCode(zipCode) {
+    get zip() { return this._zip;}
+    set zip(zip) {
         let zipRegex = RegExp('^[0-9]{6}$');
-        if(zipRegex.test(zipCode))
-            this._zipCode = zipCode;
+        if(zipRegex.test(zip))
+            this._zip = zip;
         else throw 'Zip code Should contain exact 6 digits'; 
     }
 
@@ -64,60 +76,73 @@ class AddressBook {
         else throw 'Email should be in the proper format'; 
     }
 
-
     toString(){
-        return "[ First Name: "+this.firstName+", Last Name: "+this.lastName+", Address: "+this.address+
-                ", City: "+this.city+", State: "+this.state+", Zip Code: "+this.zipCode+", Phone Number: "+
-                this.phoneNumber+", Email: "+this.email+" ]";
-
-    }
-    //add contacts
-    addContacts() {
-        try{
-            let firstName = prompt("Enter First Name : ");
-            this.firstName = firstName;
-            let lastName = prompt("Enter Last Name : ");
-            this.lastName = lastName;
-            let address = prompt("Enter Address : ");
-            this.address = address;
-            let city = prompt("Enter City : ");
-            this.city = city;
-            let state = prompt("Enter State : ");
-            this.state = state;
-            let zipcode = prompt("Enter Zip Code : ");
-            this.zipCode = zipcode;
-            let phoneNumber = prompt("Enter Phone Number : ");
-            this.phoneNumber = phoneNumber;
-            let email = prompt("Enter Email Id : ");
-            this.email = email;
-        }catch(e){
-            console.log(e);
-            return;
-        }   
+        return "FirstName = " +this.firstName+ ", LastName = "+this.lastName+ ", Address = "+this.address+", City = "+this.city+
+                ", State = "+this.state+", ZipCode = "+this.zip+", Phone Number = "+this.phoneNumber+", Email id = "+this.email;
     }
 }
 
-//main
-const prompt = require('prompt-sync')();
-let addressBookArray = new Array();       //declare addressbook array
-let choice;
-do{
-    console.log("\n************************OPTIONS***********************\n");
-    console.log("1] Add Contacts\n2] View Contacts In AddressBook\n3] Exit");
-    choice = parseInt(prompt("Enter Your Choice : "));
-    switch(choice){
-        case 1 : let addressbook = new AddressBook();      //declare addressbok object
-                 addressbook.addContacts();
-                 if(addressbook.firstName != undefined && addressbook.lastName != undefined && 
-                    addressbook.address != undefined && addressbook.city != undefined && addressbook.state
-                    != undefined && addressbook.zipCode != undefined && addressbook.phoneNumber
-                    != undefined && addressbook.email != undefined){
-                        addressBookArray.push(addressbook.toString());
-                 }
-                 break;
-        case 2 :  console.log(addressBookArray);
-                  break;
-        case 3 : return;
-        default : console.log("Invalid Input!");
+let addressBookContact = new AddressBook("Niharika","Gowda","Balehonnur","Chikmagalur","Karnataka",577112,
+8277587802,"niharikagowda1996@gmail.com");
+try{
+    addressBookContact.firstName = "john";
+    console.log(addressBookContact.toString());
+} catch (e) {
+    console.error(e);
+}
+try{
+    addressBookContact.lastName = "jonas";
+    console.log(addressBookContact.toString());
+} catch (e) {
+    console.error(e);
+}
+try{
+    addressBookContact.address = "vir";
+    console.log(addressBookContact.toString());
+} catch (e) {
+    console.error(e);
+}
+try{
+    addressBookContact.city = "sil";
+    console.log(addressBookContact.toString());
+} catch (e) {
+    console.error(e);
+}
+try{
+    addressBookContact.state = "guj";
+    console.log(addressBookContact.toString());
+} catch (e) {
+    console.error(e);
+}
+try{
+    addressBookContact.zip = 2345;
+    console.log(addressBookContact.toString());
+} catch (e) {
+    console.error(e);
+}
+try{
+    addressBookContact.phoneNumber = 98097656;
+    console.log(addressBookContact.toString());
+} catch (e) {
+    console.error(e);
+}
+try{
+    addressBookContact.email = "nihayahoo.com";
+    console.log(addressBookContact.toString());
+} catch (e) {
+    console.error(e);
+}
+
+let newAddressBook = new Array();
+let contact1 = new AddressBook("Srinivas","Gowda","Balehonnur","Chikmagalur","Karnataka",577112,
+8277451676,"niharikagowda1996@gmail.com");
+newAddressBook.push(addressBookContact);
+newAddressBook.push(contact1);
+console.log("The new address book contacts are : "+newAddressBook.toString());
+
+newAddressBook.forEach(entries => {
+    if(entries.firstName === "Srinivas"){
+        entries.city = "Aldru"; 
     }
-}while(choice != 3);
+});
+console.log("Updated output is : "+newAddressBook.toString());
